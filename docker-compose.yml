@@ -1,0 +1,25 @@
+version: "3.9"
+
+volumes:
+  db-volume:
+
+services:
+  app:
+    container_name: postup_app
+    build: .
+    ports:
+      - 8080:8080
+    env_file:
+      - postup.env
+    depends_on:
+      - db
+
+  db:
+    container_name: postup_db
+    image: postgres:16
+    ports:
+      - 5432:5432
+    env_file:
+      - postup.env
+    volumes:
+      - db-volume:/var/lib/postgresql/data
