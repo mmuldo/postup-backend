@@ -6,9 +6,23 @@ volumes:
 services:
   app:
     container_name: postup_app
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
     ports:
       - 8080:8080
+    env_file:
+      - postup.env
+    depends_on:
+      - db
+
+  test:
+    container_name: postup_test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: tester
     env_file:
       - postup.env
     depends_on:

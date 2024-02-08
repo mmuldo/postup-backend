@@ -8,6 +8,7 @@ class PostupApplicationTests {
 
 	@Test
 	void contextLoads() {
+		assert true;
 	}
 
 }
